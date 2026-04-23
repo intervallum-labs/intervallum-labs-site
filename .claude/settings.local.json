@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\Users\\\\purvi\\\\Projects\\\\Intervallum Labs Website\" | Where-Object { !$_.PSIsContainer } | Select-Object FullName, Length | Sort-Object FullName)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

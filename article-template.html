@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Build an approval workflow in Power Automate — no code required. A practical step-by-step guide from Intervallum Labs.">
+  <title>Build an approval workflow in Power Automate — Intervallum Labs</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Intervallum Labs home">
+      <svg viewBox="0 0 310 80" width="186" height="48" aria-hidden="true">
+        <rect x="12" y="16" width="7" height="48" fill="#F6F3EC" rx="2"/>
+        <rect x="28" y="24" width="7" height="32" fill="#D4920A" rx="2"/>
+        <rect x="44" y="16" width="7" height="48" fill="#F6F3EC" rx="2"/>
+        <text x="64" y="38" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#F6F3EC" letter-spacing="1.5">INTERVALLUM</text>
+        <text x="65" y="57" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#7BA38C" letter-spacing="7">LABS</text>
+      </svg>
+    </a>
+    <button class="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links-wrap">
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="index.html#pillars">Topics</a></li>
+        <li><a href="work-with-me.html">Work With Me</a></li>
+      </ul>
+      <a href="index.html#newsletter" class="nav-subscribe">Subscribe</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <section class="article-hero">
+    <div class="article-hero-inner">
+      <span class="article-tag">Power Platform</span>
+      <h1>Build an approval workflow in Power Automate — no code required</h1>
+      <p class="article-meta">April 2026 &middot; 8 min read</p>
+    </div>
+  </section>
+
+  <!-- ARTICLE BODY -->
+  <section class="article-body">
+    <div class="article-body-inner">
+
+      <p>If your team still routes approval requests via email — forwarding chains, "did anyone see this?", and lost replies — you're not alone. It's one of the most common inefficiencies I see in small business M365 tenants. And it's also one of the easiest to fix.</p>
+
+      <p>Power Automate ships with a built-in approval connector. No code. No third-party tools. No additional cost if you're already on M365 Business Basic or above. Here's how to build a working approval workflow from scratch in about 30 minutes.</p>
+
+      <h2>What we're building</h2>
+
+      <p>A simple one-step approval flow triggered when someone submits a Microsoft Form. The approver gets an email with Approve/Reject buttons. The submitter gets notified of the outcome. Everything is logged automatically.</p>
+
+      <div class="callout">
+        <p><strong>Prerequisites:</strong> Microsoft 365 Business Basic or above. You'll use Power Automate (cloud flows) and Microsoft Forms — both included in your subscription.</p>
+      </div>
+
+      <h2>Step 1: Create your form</h2>
+
+      <p>Go to <strong>forms.microsoft.com</strong> and create a new form. For this example, we'll build a purchase request form with three fields:</p>
+
+      <ul>
+        <li>Requester name (text)</li>
+        <li>What are you requesting? (text, long answer)</li>
+        <li>Estimated cost (number)</li>
+      </ul>
+
+      <p>Keep it simple. You can always add fields later. Save the form and note its name — you'll need it in the next step.</p>
+
+      <h2>Step 2: Open Power Automate and create a new flow</h2>
+
+      <p>Go to <strong>make.powerautomate.com</strong>. Click <strong>Create</strong> in the left sidebar, then choose <strong>Automated cloud flow</strong>. Give your flow a name like "Purchase Approval Workflow".</p>
+
+      <p>Search for "Microsoft Forms" in the trigger search box and select <strong>When a new response is submitted</strong>. Choose your form from the dropdown and click <strong>Create</strong>.</p>
+
+      <h2>Step 3: Get the form response details</h2>
+
+      <p>Click <strong>New step</strong> and add the <strong>Get response details</strong> action from Microsoft Forms. Set the Form ID to match your form, and set the Response ID to the dynamic value from your trigger.</p>
+
+      <p>This step pulls the actual answer data so you can use it in the approval email.</p>
+
+      <h2>Step 4: Start an approval</h2>
+
+      <p>Add another step: search for <strong>Approvals</strong> and select <strong>Start and wait for an approval</strong>. Configure it like this:</p>
+
+      <ul>
+        <li><strong>Approval type:</strong> Approve/Reject — First to respond</li>
+        <li><strong>Title:</strong> "Purchase Request — [Requester Name]" (use the dynamic value from step 3)</li>
+        <li><strong>Assigned to:</strong> your email address, or whoever should approve</li>
+        <li><strong>Details:</strong> paste in the request details and cost from the form response</li>
+      </ul>
+
+      <h2>Step 5: Send outcome notifications</h2>
+
+      <p>After the approval step, add a <strong>Condition</strong> to check whether the outcome equals "Approve". Then:</p>
+
+      <ul>
+        <li>In the <strong>Yes</strong> branch: send an email to the requester saying their request was approved</li>
+        <li>In the <strong>No</strong> branch: send an email saying it was rejected, and include the approver's comments</li>
+      </ul>
+
+      <p>Use the <strong>Send an email (V2)</strong> action from Office 365 Outlook for both branches.</p>
+
+      <h2>Test it</h2>
+
+      <p>Save your flow, then submit a test response through your form. You'll get an approval email within seconds. Approve or reject it, then check that the outcome email reaches the test requester address.</p>
+
+      <div class="callout">
+        <p><strong>Tip:</strong> Check your flow's run history in Power Automate to troubleshoot any failed steps. Each action shows its inputs and outputs, which makes debugging straightforward.</p>
+      </div>
+
+      <h2>What to build next</h2>
+
+      <p>Once you've got this working, there are several natural extensions worth exploring:</p>
+
+      <ul>
+        <li>Multi-stage approvals (manager first, then finance)</li>
+        <li>Log every request and its outcome to a SharePoint list</li>
+        <li>Escalation flows if the approver doesn't respond within 48 hours</li>
+        <li>A Power Apps front-end instead of a Form, for more control over the UI</li>
+      </ul>
+
+      <p>None of these require code. They're all connectors available in Power Automate out of the box.</p>
+
+      <p>Questions? <a href="work-with-me.html">Get in touch</a> — I'm happy to help you adapt this to your specific workflow.</p>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="newsletter-inner">
+      <span class="section-eyebrow">Stay in the Loop</span>
+      <div class="accent-line centered"></div>
+      <h2>More guides like this, free in your inbox</h2>
+      <p>Practical Microsoft 365 walkthroughs for small business owners — no fluff, no jargon.</p>
+      <form class="newsletter-form" action="#" method="post" novalidate>
+        <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit">Subscribe →</button>
+      </form>
+      <p class="newsletter-fine">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="nav-logo" aria-label="Intervallum Labs home">
+        <svg viewBox="0 0 310 80" width="155" height="40" aria-hidden="true">
+          <rect x="12" y="16" width="7" height="48" fill="#F6F3EC" rx="2"/>
+          <rect x="28" y="24" width="7" height="32" fill="#D4920A" rx="2"/>
+          <rect x="44" y="16" width="7" height="48" fill="#F6F3EC" rx="2"/>
+          <text x="64" y="38" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#F6F3EC" letter-spacing="1.5">INTERVALLUM</text>
+          <text x="65" y="57" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#7BA38C" letter-spacing="7">LABS</text>
+        </svg>
+      </a>
+      <p class="footer-copy">© 2026 Intervallum Labs, LLC. All rights reserved.</p>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="#">Privacy</a>
+        <a href="work-with-me.html">Contact</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
