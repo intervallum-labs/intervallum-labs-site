@@ -4,11 +4,6 @@
       "route": "/articles/*",
       "serve": "/articles.html",
       "statusCode": 200
-    },
-    {
-      "route": "/*",
-      "redirect": "https://www.intervallumlabs.com",
-      "statusCode": 301
     }
   ],
   "navigationFallback": {
