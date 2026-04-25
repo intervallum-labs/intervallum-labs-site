@@ -1,4 +1,5 @@
 name: Publish Articles From SharePoint
+# scheduler active
 
 on:
   schedule:
