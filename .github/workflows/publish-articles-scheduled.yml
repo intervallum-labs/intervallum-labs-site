@@ -1,0 +1,13 @@
+name: Publish Articles From SharePoint (Scheduled)
+
+on:
+  schedule:
+    - cron: "*/2 * * * *"
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Scheduler fired at $(date -u)"
