@@ -1,6 +1,13 @@
 {
   "articles": [
     {
+      "slug": "sharepoint-list-the-unspoken-rule",
+      "title": "Sharepoint Lists - the Unspoken Rule",
+      "excerpt": "",
+      "filename": "sharepoint-list-the-unspoken-rule.html",
+      "publishedAt": "2026-04-25T20:18:24.581Z"
+    },
+    {
       "slug": "josh-test-html-page-1",
       "title": "josh test html page 1",
       "excerpt": "Can we tell if this is a real test?",
