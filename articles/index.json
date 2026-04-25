@@ -9,15 +9,15 @@
     },
     {
       "slug": "josh-test-html-page-1",
-      "title": "josh test html page 1",
-      "excerpt": "Can we tell if this is a real test?",
+      "title": "Josh Test HTML Page",
+      "excerpt": "This is from Josh Test HTML Page",
       "filename": "josh-test-html-page-1.html",
       "publishedAt": "2026-04-25T19:58:28.418Z"
     },
     {
       "slug": "another-test13",
       "title": "Another Test13",
-      "excerpt": "Can we tell if this is a real test?",
+      "excerpt": "This is from Another Test 13",
       "filename": "Another-Test13.html",
       "publishedAt": "2026-04-25T19:42:11.676Z"
     }
