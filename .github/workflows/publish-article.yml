@@ -9,8 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show payload
-        run: |
-          echo "Slug: ${{ github.event.client_payload.slug }}"
-          echo "Article path: ${{ github.event.client_payload.article_path }}"
-          echo "Commit
+      - name: Show payload (safe)
+          env:
+            SLUG: ${{ github.event.client_payload.slug }}
+            ARTICLE_PATH: ${{ github.event.client_payload.article_path }}
+            COMMIT_MESSAGE: ${{ github.event.client_payload.commit_message }}
+          run: |
+            echo "Slug: $SLUG"
+            echo "Article path: $ARTICLE_PATH"
+            echo "Commit message: $COMMIT_MESSAGE"
