@@ -12,6 +12,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - name: Marker – dispatch received
+        run: echo "repository_dispatch received at $(date)"
+      
       - name: Show payload (safe)
         env:
           SLUG: ${{ github.event.client_payload.slug }}
