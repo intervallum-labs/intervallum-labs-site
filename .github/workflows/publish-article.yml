@@ -1,0 +1,16 @@
+name: Publish Article (Test)
+
+on:
+  repository_dispatch:
+    types: [publish_article]
+
+jobs:
+  test-dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show payload
+        run: |
+          echo "Slug: ${{ github.event.client_payload.slug }}"
+          echo "Article path: ${{ github.event.client_payload.article_path }}"
+          echo "Commit
