@@ -33,7 +33,7 @@ jobs:
           DRIVE_ID: ${{ secrets.DOCUMENT_LIBRARY_ID }}
 
           # Folder containing processed files (relative to the library root)
-          PROCESSED_PATH: "Processed"
+          PROCESSED_PATH: "Published/Processed"
 
           # Column internal name and status values
           STATUS_FIELD: "PublishStatus"
