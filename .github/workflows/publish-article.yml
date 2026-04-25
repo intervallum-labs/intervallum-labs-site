@@ -1,9 +1,11 @@
 name: Publish Article
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
   repository_dispatch:
-    types: [cms_article_publish]
+    types: [cms_article_publish
 
 permissions:
   contents: write
