@@ -82,10 +82,15 @@ async function graphFetch(token, url, options = {}) {
 }
 
 function slugFromFilename(filename) {
-  // Use filename (minus .html) as slug
-  // Keep as-is except remove extension and trim whitespace.
-  // (If you later want URL-friendly slugs, replace spaces with hyphens here.)
-  return filename.replace(/\.html$/i, "").trim();
+  return String(filename)
+    .replace(/\.html$/i, "")           // remove .html extension
+    .normalize("NFKD")                 // unicode normalize (splits accents)
+    .replace(/[\u0300-\u036f]/g, "")   // remove accents/diacritics
+    .trim()                            // trim whitespace
+    .toLowerCase()                     // lowercase
+    .replace(/[^a-z0-9]+/g, "-")       // non-alphanumerics -> dash
+    .replace(/^-+|-+$/g, "")           // trim leading/trailing dashes
+    .replace(/-{2,}/g, "-");           // collapse multiple dashes
 }
 
 async function listProcessedChildren(token) {
