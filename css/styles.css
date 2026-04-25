@@ -724,6 +724,111 @@ img { max-width: 100%; }
   color: #fff;
 }
 
+/* Archive */
+.archive-section {
+  margin-top: 56px;
+}
+
+.archive-heading {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--fern);
+  margin-bottom: 16px;
+}
+
+.archive-year {
+  border-top: 1px solid var(--border);
+}
+
+.archive-year:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.archive-year-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--spruce);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.archive-year-summary::-webkit-details-marker { display: none; }
+
+.archive-year-summary::after {
+  content: '+';
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--honey);
+  transition: transform 0.2s;
+}
+
+.archive-year[open] > .archive-year-summary::after {
+  content: '−';
+}
+
+.archive-year-body {
+  padding: 0 0 8px 16px;
+}
+
+.archive-month {
+  border-top: 1px solid var(--border);
+}
+
+.archive-month-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--spruce);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.archive-month-summary::-webkit-details-marker { display: none; }
+
+.archive-month-summary::after {
+  content: '+';
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--honey);
+}
+
+.archive-month[open] > .archive-month-summary::after {
+  content: '−';
+}
+
+.archive-article-list {
+  list-style: none;
+  padding: 4px 0 12px 12px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.archive-article-list a {
+  font-size: 14px;
+  color: var(--spruce);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.archive-article-list a:hover {
+  color: var(--honey);
+  border-bottom-color: var(--honey);
+}
+
 /* Work With Me */
 .services-grid {
   display: grid;

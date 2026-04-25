@@ -81,24 +81,86 @@ if (articlesGrid) {
     });
 }
 
-// Articles filter buttons (articles.html)
-const filterBtns = document.querySelectorAll('.filter-btn');
-const articleCards = document.querySelectorAll('.article-card[data-category]');
+// Articles page (articles.html)
+const latestGrid = document.getElementById('latest-articles-grid');
+const archiveSection = document.getElementById('articles-archive');
 
-if (filterBtns.length && articleCards.length) {
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+if (latestGrid && archiveSection) {
+  fetch('articles/index.json')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(({ articles }) => {
+      const all = articles || [];
 
-      const category = btn.dataset.filter;
-      articleCards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+      // --- Latest 3 cards ---
+      const latest = all.slice(0, 3);
+      if (!latest.length) {
+        latestGrid.innerHTML = '<p class="articles-empty">No articles yet — check back soon.</p>';
+      } else {
+        latestGrid.innerHTML = latest.map(({ slug, title, excerpt }) => `
+          <article class="article-card">
+            <div class="article-card-top">
+              <span class="article-tag">Article</span>
+            </div>
+            <div class="article-card-body">
+              <h3>${title}</h3>
+              ${excerpt ? `<p>${excerpt}</p>` : ''}
+              <a href="articles/${slug}.html" class="article-read-link">Read article →</a>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      // --- Archive: group by year → month ---
+      if (all.length <= 3) {
+        archiveSection.hidden = true;
+        return;
+      }
+
+      const MONTHS = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+
+      // Group all articles (including those in latest) into year→month buckets
+      const grouped = {};
+      all.forEach(article => {
+        const d = new Date(article.publishedAt);
+        const year = d.getFullYear();
+        const month = d.getMonth(); // 0-indexed
+        if (!grouped[year]) grouped[year] = {};
+        if (!grouped[year][month]) grouped[year][month] = [];
+        grouped[year][month].push(article);
       });
+
+      // Render newest year first
+      const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
+
+      archiveSection.innerHTML = `
+        <h2 class="archive-heading">Archive</h2>
+        ${years.map((year, yi) => {
+          const months = Object.keys(grouped[year]).map(Number).sort((a, b) => b - a);
+          return `
+            <details class="archive-year" ${yi === 0 ? 'open' : ''}>
+              <summary class="archive-year-summary">${year}</summary>
+              <div class="archive-year-body">
+                ${months.map((month, mi) => {
+                  const items = grouped[year][month];
+                  return `
+                    <details class="archive-month" ${yi === 0 && mi === 0 ? 'open' : ''}>
+                      <summary class="archive-month-summary">${MONTHS[month]}</summary>
+                      <ul class="archive-article-list">
+                        ${items.map(({ slug, title }) => `
+                          <li><a href="articles/${slug}.html">${title}</a></li>
+                        `).join('')}
+                      </ul>
+                    </details>
+                  `;
+                }).join('')}
+              </div>
+            </details>
+          `;
+        }).join('')}
+      `;
+    })
+    .catch(() => {
+      if (latestGrid) latestGrid.innerHTML = '<p class="articles-empty">Articles coming soon.</p>';
     });
-  });
 }

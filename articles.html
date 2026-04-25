@@ -49,83 +49,16 @@
   <section class="articles-page-section">
     <div class="articles-page-inner">
 
-      <div class="articles-filter" role="group" aria-label="Filter by topic">
-        <button class="filter-btn active" data-filter="all">All Topics</button>
-        <button class="filter-btn" data-filter="power-platform">Power Platform</button>
-        <button class="filter-btn" data-filter="already-paying">Already Paying</button>
-        <button class="filter-btn" data-filter="copilot">Copilot</button>
-        <button class="filter-btn" data-filter="m365-platform">M365 Platform</button>
+      <span class="section-eyebrow">Latest</span>
+      <div class="accent-line"></div>
+      <div class="articles-grid" id="latest-articles-grid">
+        <!-- populated by js/main.js from articles/index.json -->
       </div>
 
-      <div class="articles-grid">
-
-        <article class="article-card" data-category="power-platform">
-          <div class="article-card-top">
-            <span class="article-tag">Power Platform</span>
-          </div>
-          <div class="article-card-body">
-            <h3>Build an approval workflow in Power Automate — no code required</h3>
-            <p>Step-by-step guide to automating your approval process using Power Automate's built-in connectors. No developer needed.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card" data-category="already-paying">
-          <div class="article-card-top">
-            <span class="article-tag">You're Already Paying For This</span>
-          </div>
-          <div class="article-card-body">
-            <h3>5 Microsoft 365 features your small business isn't using</h3>
-            <p>Most businesses use Outlook and Teams. Here are five more tools in your subscription that can save you hours every week.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card" data-category="copilot">
-          <div class="article-card-top">
-            <span class="article-tag">Copilot</span>
-          </div>
-          <div class="article-card-body">
-            <h3>Is Microsoft Copilot worth it for a small business? An honest review</h3>
-            <p>After six months of daily use, here's what Copilot actually does well — and where it still falls short for SMBs.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card" data-category="m365-platform">
-          <div class="article-card-top">
-            <span class="article-tag">M365 Platform</span>
-          </div>
-          <div class="article-card-body">
-            <h3>How SharePoint and Teams work together — and why most businesses miss it</h3>
-            <p>Your Teams channels are already backed by SharePoint. Here's how to use that to your advantage instead of fighting two separate systems.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card" data-category="power-platform">
-          <div class="article-card-top">
-            <span class="article-tag">Power Platform</span>
-          </div>
-          <div class="article-card-body">
-            <h3>Replace your paper onboarding checklist with a Power Apps form</h3>
-            <p>A practical walkthrough for building a no-code onboarding app that routes tasks, captures signatures, and tracks completion.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card" data-category="already-paying">
-          <div class="article-card-top">
-            <span class="article-tag">You're Already Paying For This</span>
-          </div>
-          <div class="article-card-body">
-            <h3>Microsoft Bookings: the free scheduling tool you forgot you had</h3>
-            <p>Stop paying for Calendly. Microsoft Bookings is included in most M365 plans and does everything you need for client scheduling.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
+      <div class="archive-section" id="articles-archive">
+        <!-- populated by js/main.js from articles/index.json -->
       </div>
+
     </div>
   </section>
 
