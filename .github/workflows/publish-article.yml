@@ -23,6 +23,9 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       # 1) Verify images exist (middle-ground safety)
       - name: Verify referenced images exist
@@ -32,8 +35,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Extract site-relative image references that match your convention
-          # Example expected: /images/articles/<slug>/file.png
+          # Extract site-relative image references that match your convention:
+          # /images/articles/<slug>/file.ext
           echo "$HTML" \
             | grep -oE "/images/articles/${SLUG}/[^\"' )>]+" \
             | sort -u \
@@ -84,5 +87,3 @@ EOF
           git config user.name "intervallum-bot"
           git config user.email "bot@intervallumlabs.com"
           git add articles/
-          git commit -m "$COMMIT_MESSAGE" || echo "No changes to commit"
-          git push
