@@ -2,8 +2,16 @@ name: Publish Article
 
 on:
   workflow_dispatch:
-  repository_dispatch:
-    types: [cms_article_publish]
+    inputs:
+      slug:
+        required: true
+        type: string
+      commit_message:
+        required: true
+        type: string
+      html:
+        required: true
+        type: string
 
 permissions:
   contents: write
