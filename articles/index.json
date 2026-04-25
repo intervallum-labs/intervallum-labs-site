@@ -1,6 +1,13 @@
 {
   "articles": [
     {
+      "slug": "power-automate-and-you",
+      "title": "Power Automate and You",
+      "excerpt": "",
+      "filename": "power-automate-and-you.html",
+      "publishedAt": "2026-04-25T23:08:38.421Z"
+    },
+    {
       "slug": "sharepoint-list-the-unspoken-rule",
       "title": "Sharepoint Lists - the Unspoken Rule",
       "excerpt": "",
@@ -16,7 +23,7 @@
     },
     {
       "slug": "another-test13",
-      "title": "Another Test13",
+      "title": "Another Test 13",
       "excerpt": "This is from Another Test 13",
       "filename": "Another-Test13.html",
       "publishedAt": "2026-04-25T19:42:11.676Z"
