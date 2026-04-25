@@ -1,8 +1,10 @@
 name: Publish Article
 
 on:
+  push:
+    branches: [main]
   repository_dispatch:
-    types: [publish_article]
+    types: [publish_article
 
 permissions:
   contents: write
