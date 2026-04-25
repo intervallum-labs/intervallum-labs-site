@@ -1,11 +1,14 @@
-name: Publish Article (Test)
+name: Publish Article
 
 on:
   repository_dispatch:
     types: [publish_article]
 
+permissions:
+  contents: write
+
 jobs:
-  test-dispatch:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Show payload (safe)
@@ -17,3 +20,69 @@ jobs:
           echo "Slug: $SLUG"
           echo "Article path: $ARTICLE_PATH"
           echo "Commit message: $COMMIT_MESSAGE"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # 1) Verify images exist (middle-ground safety)
+      - name: Verify referenced images exist
+        env:
+          SLUG: ${{ github.event.client_payload.slug }}
+          HTML: ${{ github.event.client_payload.html }}
+        run: |
+          set -euo pipefail
+
+          # Extract site-relative image references that match your convention
+          # Example expected: /images/articles/<slug>/file.png
+          echo "$HTML" \
+            | grep -oE "/images/articles/${SLUG}/[^\"' )>]+" \
+            | sort -u \
+            > /tmp/required_images.txt || true
+
+          if [ ! -s /tmp/required_images.txt ]; then
+            echo "No /images/articles/${SLUG}/... references found in HTML. Skipping image checks."
+            exit 0
+          fi
+
+          echo "Images referenced by article:"
+          cat /tmp/required_images.txt
+
+          missing=0
+          while IFS= read -r img; do
+            # Convert "/images/articles/..." -> "images/articles/..."
+            repo_path="${img#/}"
+            if [ ! -f "$repo_path" ]; then
+              echo "::error::Missing image in repo: $repo_path"
+              missing=1
+            fi
+          done < /tmp/required_images.txt
+
+          if [ "$missing" -ne 0 ]; then
+            echo "One or more images are missing. Aborting publish."
+            exit 1
+          fi
+
+          echo "All referenced images exist ✅"
+
+      # 2) Write the article HTML file (safe against quotes/newlines)
+      - name: Write article HTML file
+        env:
+          SLUG: ${{ github.event.client_payload.slug }}
+        run: |
+          set -euo pipefail
+          mkdir -p articles
+          cat > "articles/${SLUG}.html" <<'EOF'
+${{ github.event.client_payload.html }}
+EOF
+
+      # 3) Commit + push
+      - name: Commit & push
+        env:
+          COMMIT_MESSAGE: ${{ github.event.client_payload.commit_message }}
+        run: |
+          set -euo pipefail
+          git config user.name "intervallum-bot"
+          git config user.email "bot@intervallumlabs.com"
+          git add articles/
+          git commit -m "$COMMIT_MESSAGE" || echo "No changes to commit"
+          git push
