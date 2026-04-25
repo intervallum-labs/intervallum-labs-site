@@ -86,36 +86,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about-section" id="about">
-    <div class="about-inner">
-      <div class="about-photo">
-        <img
-          src="images/josh.jpg"
-          alt="Josh, Founder of Intervallum Labs"
-          data-fallback
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-        >
-        <div class="photo-placeholder" style="display:none" aria-hidden="true">J</div>
-      </div>
-      <div class="about-text">
-        <span class="section-eyebrow">Who's Behind This</span>
-        <div class="accent-line"></div>
-        <p class="about-name">Josh</p>
-        <p class="about-title">Founder, Intervallum Labs</p>
-        <p>I've spent 20+ years in corporate IT watching large enterprises get all the Microsoft 365 training, support, and hand-holding — while small business owners are left to figure it out alone. Intervallum Labs exists to fill that space. No jargon. No enterprise assumptions. Just practical guidance built for the way small businesses actually work.</p>
-        <div class="tags">
-          <span class="tag">Power Platform</span>
-          <span class="tag">Copilot Studio</span>
-          <span class="tag">Graph API</span>
-          <span class="tag">SharePoint</span>
-          <span class="tag">Teams</span>
-          <span class="tag">M365 Admin</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CONTENT PILLARS -->
   <section class="pillars-section" id="pillars">
     <div class="pillars-inner">
@@ -188,44 +158,41 @@
         <h2>Fresh from the lab</h2>
         <p>Practical walkthroughs written for business owners, not IT departments.</p>
       </div>
-      <div class="articles-grid">
-
-        <article class="article-card">
-          <div class="article-card-top">
-            <span class="article-tag">Power Platform</span>
-          </div>
-          <div class="article-card-body">
-            <h3>Build an approval workflow in Power Automate — no code required</h3>
-            <p>Step-by-step guide to automating your approval process using Power Automate's built-in connectors. No developer needed.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card">
-          <div class="article-card-top">
-            <span class="article-tag">You're Already Paying For This</span>
-          </div>
-          <div class="article-card-body">
-            <h3>5 Microsoft 365 features your small business isn't using</h3>
-            <p>Most businesses use Outlook and Teams. Here are five more tools in your subscription that can save you hours every week.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
-        <article class="article-card">
-          <div class="article-card-top">
-            <span class="article-tag">Copilot</span>
-          </div>
-          <div class="article-card-body">
-            <h3>Is Microsoft Copilot worth it for a small business? An honest review</h3>
-            <p>After six months of daily use, here's what Copilot actually does well — and where it still falls short for SMBs.</p>
-            <a href="article-template.html" class="article-read-link">Read article →</a>
-          </div>
-        </article>
-
+      <div class="articles-grid" id="articles-grid">
+        <!-- populated by js/main.js from articles/index.json -->
       </div>
       <div class="articles-cta">
         <a href="articles.html" class="btn-primary">View all articles →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-photo">
+        <img
+          src="images/josh.jpg"
+          alt="Josh, Founder of Intervallum Labs"
+          data-fallback
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        >
+        <div class="photo-placeholder" style="display:none" aria-hidden="true">J</div>
+      </div>
+      <div class="about-text">
+        <span class="section-eyebrow">Who's Behind This</span>
+        <div class="accent-line"></div>
+        <p class="about-name">Josh</p>
+        <p class="about-title">Founder, Intervallum Labs</p>
+        <p>I've spent 20+ years in corporate IT watching large enterprises get all the Microsoft 365 training, support, and hand-holding — while small business owners are left to figure it out alone. Intervallum Labs exists to fill that space. No jargon. No enterprise assumptions. Just practical guidance built for the way small businesses actually work.</p>
+        <div class="tags">
+          <span class="tag">Power Platform</span>
+          <span class="tag">Copilot Studio</span>
+          <span class="tag">Graph API</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">Teams</span>
+          <span class="tag">M365 Admin</span>
+        </div>
       </div>
     </div>
   </section>

@@ -52,6 +52,35 @@ document.querySelectorAll('.newsletter-form').forEach(form => {
   });
 });
 
+// Dynamic latest articles (index.html)
+const articlesGrid = document.getElementById('articles-grid');
+if (articlesGrid) {
+  fetch('articles/index.json')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(({ articles }) => {
+      const latest = (articles || []).slice(0, 3);
+      if (!latest.length) {
+        articlesGrid.innerHTML = '<p class="articles-empty">No articles yet — check back soon.</p>';
+        return;
+      }
+      articlesGrid.innerHTML = latest.map(({ slug, title, excerpt }) => `
+        <article class="article-card">
+          <div class="article-card-top">
+            <span class="article-tag">Article</span>
+          </div>
+          <div class="article-card-body">
+            <h3>${title}</h3>
+            ${excerpt ? `<p>${excerpt}</p>` : ''}
+            <a href="articles/${slug}.html" class="article-read-link">Read article →</a>
+          </div>
+        </article>
+      `).join('');
+    })
+    .catch(() => {
+      articlesGrid.innerHTML = '<p class="articles-empty">Articles coming soon.</p>';
+    });
+}
+
 // Articles filter buttons (articles.html)
 const filterBtns = document.querySelectorAll('.filter-btn');
 const articleCards = document.querySelectorAll('.article-card[data-category]');

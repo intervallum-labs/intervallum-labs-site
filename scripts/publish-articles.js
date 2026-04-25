@@ -165,6 +165,65 @@ async function updatePublishStatus(token, listItem, newStatus) {
   }
 }
 
+function extractTitle(html, filename) {
+  // Try <title> tag first
+  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  if (titleMatch) {
+    return titleMatch[1]
+      .replace(/\s*\|\s*Exported$/i, "")
+      .replace(/\.md$/i, "")
+      .trim();
+  }
+  // Fall back to first <h1>
+  const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+  if (h1Match) return h1Match[1].trim();
+  // Last resort: humanise the filename
+  return filename.replace(/\.html$/i, "").replace(/[-_]+/g, " ").trim();
+}
+
+function extractExcerpt(html) {
+  // Strip <style> and <script> blocks before scanning for <p> tags
+  const body = html.replace(/<style[\s\S]*?<\/style>/gi, "")
+                   .replace(/<script[\s\S]*?<\/script>/gi, "");
+  const matches = body.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+  for (const m of matches) {
+    const text = m[1].replace(/<[^>]+>/g, "").trim();
+    if (text.length > 20) return text.length > 160 ? text.slice(0, 157) + "…" : text;
+  }
+  return "";
+}
+
+function rebuildManifest() {
+  const manifestPath = path.join("articles", "index.json");
+
+  // Load existing manifest to preserve publishedAt dates
+  const existing = {};
+  try {
+    const parsed = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+    for (const entry of (parsed.articles || [])) {
+      existing[entry.filename] = entry;
+    }
+  } catch (_) {}
+
+  const files = fs.readdirSync("articles").filter(f => f.toLowerCase().endsWith(".html"));
+
+  const articles = files.map(filename => {
+    const filePath = path.join("articles", filename);
+    const html = fs.readFileSync(filePath, "utf8");
+    const slug = slugFromFilename(filename);
+    const title = extractTitle(html, filename);
+    const excerpt = extractExcerpt(html);
+    const publishedAt = existing[filename]?.publishedAt
+      || fs.statSync(filePath).mtime.toISOString();
+    return { slug, title, excerpt, filename, publishedAt };
+  });
+
+  articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+  fs.writeFileSync(manifestPath, JSON.stringify({ articles }, null, 2), "utf8");
+  console.log(`Manifest rebuilt with ${articles.length} article(s).`);
+}
+
 async function main() {
   const token = await getGraphToken();
 
@@ -200,6 +259,7 @@ async function main() {
     console.log(`Marked SharePoint status: ${STATUS_FIELD}=${STATUS_PUBLISHED} for ${filename}`);
   }
 
+  rebuildManifest();
   console.log("Done.");
 }
 
