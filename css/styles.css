@@ -116,6 +116,66 @@ img { max-width: 100%; }
   transition: transform 0.25s, opacity 0.25s;
 }
 
+.nav-has-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-dropdown-caret {
+  font-size: 8px;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.nav-has-dropdown:hover .nav-dropdown-caret,
+.nav-has-dropdown:focus-within .nav-dropdown-caret {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  background: var(--dark-spruce);
+  border-radius: 8px;
+  border: 0.5px solid rgba(246, 243, 236, 0.12);
+  list-style: none;
+  min-width: 210px;
+  padding: 6px 0;
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.nav-has-dropdown:hover .nav-dropdown-menu,
+.nav-has-dropdown:focus-within .nav-dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fern);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.15s;
+}
+
+.nav-dropdown-menu li a:hover,
+.nav-dropdown-menu li a:focus {
+  color: var(--ivory);
+  background: rgba(246, 243, 236, 0.06);
+}
+
 /* ============================================
    SHARED ELEMENTS
    ============================================ */
@@ -1100,6 +1160,32 @@ img { max-width: 100%; }
 }
 
 /* ============================================
+   VISION & MISSION PAGE
+   ============================================ */
+
+.vm-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0 56px;
+  align-items: start;
+}
+
+.vm-divider {
+  background: var(--border);
+  align-self: stretch;
+}
+
+.vm-statement {
+  font-size: 20px;
+  color: var(--spruce);
+  line-height: 1.65;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ============================================
    ABOUT COMPANY SECTIONS
    ============================================ */
 
@@ -1398,6 +1484,31 @@ img { max-width: 100%; }
 
   .nav-hamburger { display: flex; }
 
+  .nav-has-dropdown { position: static; }
+
+  .nav-dropdown-caret { display: none; }
+
+  .nav-dropdown-menu {
+    display: block;
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    min-width: 0;
+    padding: 4px 0 0 12px;
+  }
+
+  .nav-dropdown-menu li a {
+    padding: 5px 0;
+    opacity: 0.85;
+  }
+
+  .nav-dropdown-menu li a:hover,
+  .nav-dropdown-menu li a:focus {
+    background: transparent;
+  }
+
   .nav-links-wrap {
     display: none;
     position: absolute;
@@ -1512,6 +1623,15 @@ img { max-width: 100%; }
   .about-expertise { padding: 48px 24px; }
 
   .expertise-grid { grid-template-columns: 1fr; }
+
+  .vm-inner {
+    grid-template-columns: 1fr;
+    gap: 40px 0;
+  }
+
+  .vm-divider { display: none; }
+
+  .vm-statement { font-size: 17px; }
 
   .beliefs-grid { grid-template-columns: 1fr; }
 
