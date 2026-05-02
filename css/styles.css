@@ -124,6 +124,13 @@ img { max-width: 100%; }
   display: flex !important;
   align-items: center;
   gap: 5px;
+  color: var(--fern);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: default;
+  user-select: none;
 }
 
 .nav-dropdown-caret {
@@ -140,7 +147,7 @@ img { max-width: 100%; }
 .nav-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 8px);
   left: 0;
   background: var(--dark-spruce);
   border-radius: 8px;
@@ -150,6 +157,15 @@ img { max-width: 100%; }
   padding: 6px 0;
   z-index: 200;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
 }
 
 .nav-has-dropdown:hover .nav-dropdown-menu,
