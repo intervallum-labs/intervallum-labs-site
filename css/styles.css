@@ -1491,6 +1491,44 @@ img { max-width: 100%; }
 }
 
 /* ============================================
+   SERVICES PAGE
+   ============================================ */
+
+.services-engagement-h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--spruce);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.services-tagline {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--fern);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.services-section-h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--spruce);
+  margin-bottom: 16px;
+}
+
+.services-how-wrap {
+  margin-top: 40px;
+}
+
+.services-closing-statement {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--spruce);
+  line-height: 1.65;
+}
+
+/* ============================================
    PRICING PAGE
    ============================================ */
 
