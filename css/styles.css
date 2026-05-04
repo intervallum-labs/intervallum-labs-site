@@ -2131,13 +2131,13 @@ img { max-width: 100%; }
   color: var(--fern);
   font-size: 16px;
   line-height: 1.75;
-  margin-bottom: 4px;
+  margin-bottom: 0;
   max-width: 600px;
 }
 
 .hero-tagline-p {
   font-style: italic;
-  margin-bottom: 36px !important;
+  margin-bottom: 32px !important;
 }
 
 .hero-centered .hero-buttons { justify-content: center; }
