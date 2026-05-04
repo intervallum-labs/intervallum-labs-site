@@ -248,6 +248,13 @@ img { max-width: 100%; }
 
 .btn-secondary:hover { border-color: var(--ivory); }
 
+.home-section--ivory .btn-secondary {
+  color: var(--spruce);
+  border-color: var(--spruce);
+}
+
+.home-section--ivory .btn-secondary:hover { border-color: var(--honey); color: var(--honey); }
+
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .tag {
