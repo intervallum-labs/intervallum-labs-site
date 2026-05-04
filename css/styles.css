@@ -2132,7 +2132,7 @@ img { max-width: 100%; }
   color: var(--fern);
   font-size: 16px;
   line-height: 1.75;
-  margin-bottom: 0;
+  margin-bottom: 1em;
   max-width: 600px;
 }
 
