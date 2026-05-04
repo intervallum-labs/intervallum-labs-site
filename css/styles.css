@@ -2135,6 +2135,7 @@ img { max-width: 100%; }
   font-weight: 700;
   color: var(--ivory);
   line-height: 1.15;
+  margin-top: 48px;
   margin-bottom: 28px;
 }
 
