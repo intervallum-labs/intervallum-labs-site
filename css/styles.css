@@ -265,7 +265,7 @@ img { max-width: 100%; }
 
 .hero {
   background: var(--spruce);
-  padding: 72px 48px;
+  padding: 32px 48px 72px;
 }
 
 .hero-inner {
