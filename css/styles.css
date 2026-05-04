@@ -2112,8 +2112,9 @@ img { max-width: 100%; }
 }
 
 .hero-logo {
-  width: 372px;
-  height: 96px;
+  width: 744px;
+  height: 192px;
+  max-width: 100%;
   margin-bottom: 20px;
 }
 
@@ -2129,7 +2130,7 @@ img { max-width: 100%; }
   color: var(--fern);
   font-size: 16px;
   line-height: 1.75;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   max-width: 600px;
 }
 
@@ -2481,7 +2482,7 @@ img { max-width: 100%; }
 @media (max-width: 768px) {
   .home-section { padding: 48px 24px; }
 
-  .hero-logo { width: 248px; height: 64px; }
+  .hero-logo { width: 496px; height: 128px; }
 
   .hero-centered h1 { font-size: 28px; }
 
