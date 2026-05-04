@@ -52,6 +52,44 @@ document.querySelectorAll('.newsletter-form').forEach(form => {
   });
 });
 
+// Contact form — AJAX submission via Formspree
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        const wrap = contactForm.closest('.contact-form-wrap');
+        wrap.innerHTML = `
+          <span class="section-eyebrow">Message Received</span>
+          <div class="accent-line"></div>
+          <h2>Thanks &mdash; I&rsquo;ve got your message</h2>
+          <p>I appreciate you reaching out. I&rsquo;ve received your message and I&rsquo;ll take a look personally.</p>
+          <p>I&rsquo;ll follow up soon to talk through what you shared and see how I can help. No pressure, no sales pitch &mdash; just a conversation to understand what&rsquo;s going on and whether it makes sense to work together.</p>
+          <p>In the meantime, feel free to close this tab and get back to your day.</p>
+        `;
+      } else {
+        btn.textContent = 'Something went wrong — please try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Something went wrong — please try again';
+      btn.disabled = false;
+    }
+  });
+}
+
 // Dynamic latest articles (index.html)
 const articlesGrid = document.getElementById('articles-grid');
 if (articlesGrid) {
