@@ -2109,6 +2109,7 @@ img { max-width: 100%; }
   text-align: center;
   align-items: center;
   max-width: 720px;
+  gap: 0;
 }
 
 .hero-logo {
