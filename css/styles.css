@@ -48,27 +48,11 @@ img { max-width: 100%; }
   gap: 16px;
 }
 
-.nav-logo-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
-  gap: 2px;
-}
-
 .nav-logo {
   display: block;
   line-height: 0;
   text-decoration: none;
-}
-
-.nav-logo-tagline {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--honey);
-  line-height: 1;
+  flex-shrink: 0;
 }
 
 .nav-links-wrap {
@@ -2133,7 +2117,17 @@ img { max-width: 100%; }
   height: auto;
   max-width: 100%;
   display: block;
-  margin: 0 auto 20px;
+  margin: 0 auto 8px;
+}
+
+.hero-location {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--honey);
+  margin-bottom: 28px;
 }
 
 .hero-centered h1 {
