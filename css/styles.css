@@ -2113,7 +2113,7 @@ img { max-width: 100%; }
 
 .hero-logo {
   width: 744px;
-  height: 192px;
+  height: auto;
   max-width: 100%;
   display: block;
   margin: 0 auto 20px;
@@ -2482,8 +2482,6 @@ img { max-width: 100%; }
 
 @media (max-width: 768px) {
   .home-section { padding: 48px 24px; }
-
-  .hero-logo { width: 496px; height: 128px; }
 
   .hero-centered h1 { font-size: 28px; }
 
