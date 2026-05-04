@@ -265,7 +265,7 @@ img { max-width: 100%; }
 
 .hero {
   background: var(--spruce);
-  padding: 32px 48px 72px;
+  padding: 32px 48px 36px;
 }
 
 .hero-inner {
@@ -2127,7 +2127,7 @@ img { max-width: 100%; }
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--honey);
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .hero-centered h1 {
@@ -2135,7 +2135,7 @@ img { max-width: 100%; }
   font-weight: 700;
   color: var(--ivory);
   line-height: 1.15;
-  margin-top: 48px;
+  margin-top: 24px;
   margin-bottom: 28px;
 }
 
